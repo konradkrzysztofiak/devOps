@@ -26,12 +26,15 @@ steps:
     publishWebProjects: true
     zipAfterPublish: true
 - task: AzureResourceManagerTemplateDeployment@3
-  displayName: 'ARM Template deployment: Resource Group scope'
   inputs:
+    deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'Subskrypcja programu Visual Studio Professional (67e32ba6-63bb-4f67-bf30-e0d5465fe2dc)'
     subscriptionId: '67e32ba6-63bb-4f67-bf30-e0d5465fe2dc'
-    resourceGroupName: pipelineTraining
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'pipelineTraining'
     location: 'West Europe'
-    csmFile: '$(System.DefaultWorkingDirectory)/GitHub Drops/armTemplates/webApp.json'
-    csmParametersFile: '$(System.DefaultWorkingDirectory)/GitHub Drops/armTemplates/webApp.parameters.json'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/konradkrzysztofiak/devOps/blob/master/armTemplates/webApp.json'
+    csmParametersFileLink: 'https://github.com/konradkrzysztofiak/devOps/blob/master/armTemplates/webApp.parameters.json'
+    deploymentMode: 'Incremental'
 - task: PublishBuildArtifacts@1
