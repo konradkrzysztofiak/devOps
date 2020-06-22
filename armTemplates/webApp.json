@@ -89,7 +89,7 @@
                         "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345678')]"
                     ],
                     "properties": {
-                        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'serverFarmName')]",
+                        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'appServicePlanDevOps')]",
                         "siteConfig": {
                             "appSettings": [
                                 {
