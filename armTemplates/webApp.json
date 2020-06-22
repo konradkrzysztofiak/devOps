@@ -63,6 +63,66 @@
                         "startIpAddress": "0.0.0.0",
                         "endIpAddress": "0.0.0.0"
                     }
+                },
+                {
+                    "name": "storageaccount12345678",
+                    "type": "Microsoft.Storage/storageAccounts",
+                    "apiVersion": "2019-06-01",
+                    "tags": {
+                        "displayName": "storageaccount12345678"
+                    },
+                    "location": "[resourceGroup().location]",
+                    "kind": "StorageV2",
+                    "sku": {
+                        "name": "Standard_LRS",
+                        "tier": "Standard"
+                    }
+                },
+                {
+                    "name": "devopsfunction123456789",
+                    "type": "Microsoft.Web/sites",
+                    "apiVersion": "2018-11-01",
+                    "location": "[resourceGroup().location]",
+                    "kind": "functionapp",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/serverfarms', 'appServicePlanDevOps')]",
+                        "[resourceId('Microsoft.Storage/storageAccounts', 'storageaccount12345678')]"
+                    ],
+                    "properties": {
+                        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'serverFarmName')]",
+                        "siteConfig": {
+                            "appSettings": [
+                                {
+                                    "name": "AzureWebJobsDashboard",
+                                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'storageAccountName', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
+                                },
+                                {
+                                    "name": "AzureWebJobsStorage",
+                                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'storageAccountName', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
+                                },
+                                {
+                                    "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'storageAccountName', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
+                                },
+                                {
+                                    "name": "WEBSITE_CONTENTSHARE",
+                                    "value": "[toLower('devopsfunction123456789')]"
+                                },
+                                {
+                                    "name": "FUNCTIONS_EXTENSION_VERSION",
+                                    "value": "~2"
+                                },
+                                {
+                                    "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                                    "value": "[reference(resourceId('microsoft.insights/components/', 'applicationInsightsName'), '2015-05-01').InstrumentationKey]"
+                                },
+                                {
+                                    "name": "FUNCTIONS_WORKER_RUNTIME",
+                                    "value": "dotnet"
+                                }
+                            ]
+                        }
+                    }
                 }
             ]
         }
