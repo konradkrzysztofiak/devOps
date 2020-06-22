@@ -179,12 +179,12 @@
             }
         },
         {
-            "name": "keyVaultTraining123devops987654321",
+            "name": "keyVaultTraining123965",
             "type": "Microsoft.KeyVault/vaults",
             "apiVersion": "2016-10-01",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "keyVaultTraining123devops987654321"
+                "displayName": "keyVaultTraining123965"
             },
             "properties": {
                 "enabledForDeployment": true,
