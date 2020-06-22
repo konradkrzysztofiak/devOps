@@ -16,25 +16,13 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: $(Build.SourcesDirectory)
-    targetFolder: $(Build.ArtifactStagingDirectory)
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet publish $(buildConfiguration)'
   inputs:
-    command: 'publish'
+    command: publish
     publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Subskrypcja programu Visual Studio Professional (67e32ba6-63bb-4f67-bf30-e0d5465fe2dc)'
-    subscriptionId: '67e32ba6-63bb-4f67-bf30-e0d5465fe2dc'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'pipelineTraining'
-    location: 'West Europe'
-    templateLocation: 'Linked artifact'
-    csmFile: '/armTemplates/wepApp.json'
-    csmParametersFile: '/armTemplates/wepApp.parameters.json'
-    deploymentMode: 'Incremental'
+
 - task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
