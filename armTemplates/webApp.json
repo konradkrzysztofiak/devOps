@@ -177,6 +177,41 @@
                 "parameters": {
                 }
             }
+        },
+        {
+            "name": "keyVaultTraining123",
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2016-10-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "keyVaultTraining123"
+            },
+            "properties": {
+                "enabledForDeployment": true,
+                "enabledForTemplateDeployment": true,
+                "enabledForDiskEncryption": true,
+                "tenantId": "a1cc5a87-10ae-4f4c-a3a6-d22cba23a7c9",
+                "accessPolicies": [
+                    {
+                        "tenantId": "a1cc5a87-10ae-4f4c-a3a6-d22cba23a7c9",
+                        "objectId": "13691a17-1a93-40f9-ab27-ca661e7b64ff",
+                        "permissions": {
+                            "keys": [
+                                "Get"
+                            ],
+                            "secrets": [
+                                "List",
+                                "Get",
+                                "Set"
+                            ]
+                        }
+                    }
+                ],
+                "sku": {
+                    "name": "standard",
+                    "family": "A"
+                }
+            }
         }
     ],
     "outputs": {}
