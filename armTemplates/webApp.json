@@ -94,6 +94,7 @@
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'appServicePlanDevOps')]",
                 "siteConfig": {
                     "appSettings": [
+                        
                         {
                             "name": "AzureWebJobsDashboard",
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'storage123456789', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
