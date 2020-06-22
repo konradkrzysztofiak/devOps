@@ -34,7 +34,7 @@ steps:
     resourceGroupName: 'pipelineTraining'
     location: 'West Europe'
     templateLocation: 'Linked artifact'
-    csmFile: 'armTemplates/wepApp.json'
-    csmParametersFile: 'armTemplates/wepApp.parameters.json'
+    csmFile: '/armTemplates/wepApp.json'
+    csmParametersFile: '/armTemplates/wepApp.parameters.json'
     deploymentMode: 'Incremental'
 - task: PublishBuildArtifacts@1
