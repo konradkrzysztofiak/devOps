@@ -22,19 +22,19 @@
             }
         },
         {
-            "name": "webAppDevOps",
+            "name": "webAppDevOps123456789",
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",
             "location": "[resourceGroup().location]",
             "tags": {
                 "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/appServicePlan1')]": "Resource",
-                "displayName": "webAppDevOps"
+                "displayName": "webAppDevOps123456789"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', 'appServicePlanDevOps')]"
             ],
             "properties": {
-                "name": "webAppDevOps",
+                "name": "webAppDevOps123456789",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'appServicePlanDevOps')]"
             }
         }
